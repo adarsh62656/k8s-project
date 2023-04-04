@@ -1,11 +1,13 @@
 - hosts: node
   become: true
+  environment:
+    KUBECONFIG: /home/ec2-user/.kube/config
   tasks: 
-     - name: delete old deployment
-       command: kubectl delete -f /home/ec2-user/Deployment.yml
-     - name: delete old service
-       command: kubectl delete -f /home/ec2-user/Service.yml
-     - name: create new deployment
-       command: kubectl apply -f /home/ec2-user/Deployment.yml
-     - name: create new service
-       command: kubectl apply -f /home/ec2-user/Service.yml
+      - name: delete old deployment
+        command: kubectl delete -f /home/ec2-user/Deployment.yml
+      - name: delete old service
+        command: kubectl delete -f /home/ec2-user/Service.yml
+      - name: create new deployment
+        command: kubectl apply -f /home/ec2-user/Deployment.yml
+      - name: create new service
+        command: kubectl apply -f /home/ec2-user/Service.yml
